@@ -1,0 +1,32 @@
+$min-desktop-res: 1024px;
+$max-mobile-res: 1023px;
+$desktop-step-height: 595px; //era 555px
+$mobile-step-height: 100vh;
+$headerbar-height: 85px;
+
+/* Colors */
+$primary: #ffcd00;
+$green: #7fa545;
+$green30: #2f460a;
+$red: #ff4d6c;
+$violet: #917ba8;
+
+$blue-teal: #0885ae;
+$link-water: #cee7ef;
+$jade: #21ad72;
+$blue-romance: #d7f0e5;
+
+$info-border: $blue-teal;
+$info-bkg: $link-water;
+$active-border: $jade;
+$active-bkg: $blue-romance;
+
+$white: white;
+$gray10: #f3f3f3;
+$gray15: #f4f4f4;
+$gray20: #eaeaea;
+$gray30: #b9b9b9;
+$gray80: #767676;
+$gray90: #444444;
+$dark: #333333;
+$black: black;
