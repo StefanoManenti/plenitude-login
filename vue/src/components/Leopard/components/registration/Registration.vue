@@ -1,7 +1,7 @@
 <template id="registration">
     <div>
-        <div>Accedi o registrati</div>
-        <div>Accedi con le tue credenziali o registrati. Se sei già un utente delle nostre app, utilizza la stessa e-mail.</div>
+        <div>Registrazione</div>
+        <div>Inserisci dati</div>
     </div>
 </template>
 
