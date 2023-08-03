@@ -9,6 +9,7 @@
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
+        "axios": "^1.4.0",
         "core-js": "^3.6.5",
         "node-sass": "^8.0.0",
         "vue": "^2.6.11",
@@ -39,7 +40,7 @@
             "parser": "babel-eslint"
         },
         "rules": {
-            "no-debugger":0
+            "no-debugger": 0
         }
     },
     "browserslist": [

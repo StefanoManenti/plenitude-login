@@ -19,11 +19,7 @@ export default {
     data: function () {
         return {
             ver: "2806a",
-            preselection: "",
-            active: false,
-            path: '',
-            luce: false,
-            gas: false,
+
         };
 
     },
