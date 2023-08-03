@@ -6,10 +6,6 @@
             @go-first="goFirst"></headerbar>
         -->
         
-        <claim></claim>
-
-        
-
         <div class="container no-padding singleStepContainer">
             <step v-for="(step, index) in stepflow" :key="step.id + '_' + index" :step="step" :index="index"
                 :preselection="preselection" :class="boxClass" :starturl="starturl" :commodity="commodity"
@@ -26,7 +22,6 @@ import Vue from "vue";
 import Vue2TouchEvents from "vue2-touch-events";
 Vue.use(Vue2TouchEvents);
 
-import Claim from "./claim.vue";
 import Step from "./Step.vue";
 //import Exit from "./Exit.vue";
 //import ConfigSummary from "./ConfigSummary.vue";
@@ -42,7 +37,6 @@ export default {
     name: "Flow",
 
     components: {
-        Claim,
         Step,
         //Exit,
         //ConfigSummary,

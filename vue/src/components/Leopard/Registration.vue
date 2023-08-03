@@ -1,12 +1,13 @@
-<template id="claim">
+<template id="registration">
     <div>
-        Stare Insieme è un'esperienza sorprendente
+        <div>Accedi o registrati</div>
+        <div>Accedi con le tue credenziali o registrati. Se sei già un utente delle nostre app, utilizza la stessa e-mail.</div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Claim",
+    name: "Registration",
 
     props: [],
     watch: {
