@@ -1,6 +1,6 @@
 <template id="LoginOrRegister">
   <div class="login-or-register">
-    <form class="login-or-register__content">
+    <div class="login-or-register__content">
 
       <h3 class="login-or-register__title">
         Accedi o registrati
@@ -13,19 +13,19 @@
 
       <h6 class="login-or-register__label">Mail</h6>
 
-      <input class="login-or-register__input" placeholder="nome.cognome@mail.com">
+      <input type="email" class="login-or-register__input" placeholder="nome.cognome@mail.com">
 
       <a class="login-or-register__forgot-mail" href="">Hai dimenticato la mail ?</a>
 
-      <button class="login-or-register__button-continue" type="button">PROSEGUI</button>
+      <button class="login-or-register__button login-or-register__button--continue" type="button">PROSEGUI</button>
 
       <p class="login-or-register__splitter">OPPURE</p>
 
-      <button class="login-or-register__button-social">
+      <button class="login-or-register__button login-or-register__button--social">
         PROSEGUI TRAMITE SOCIAL
       </button>
 
-    </form>
+    </div>
   </div>
 
 </template>
@@ -66,42 +66,48 @@ export default {
 }
 
 .login-or-register__content {
-  margin: 75px auto auto;
+  margin: 4.5em auto auto;
   width: 30vw;
 }
 
 .login-or-register__title {
   margin-bottom: .5em;
-  font-size: 2.60em;
+  font-size: 2rem;
   font-weight: 600;
 }
 
+.login-or-register__text {
+  font-size: 1rem;
+}
+
 .login-or-register__label {
+  margin-top: 1.5em;
   font-weight: 600;
 }
 
 .login-or-register__input {
   width: 100%;
-  border-radius: 4px;
-  height: 45px;
+  border-radius: .2em;
+  height: 2.8em;
   border: 1px solid $gray30;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
+input[type=email] {
+  padding-left: 1rem;
 }
 
 .login-or-register__forgot-mail {
   color: rgb(9, 88, 165);
-  font-weight: 700;
+  font-weight: 600;
 }
 
-.login-or-register__button-continue {
-  width: 100%;
+.login-or-register__button--continue {
   background: $primary;
   border: unset;
-  border-radius: 4px;
-  height: 45px;
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin-top: 1.8em;
+  margin-bottom: 1.2em;
 }
 
 .login-or-register__splitter {
@@ -128,13 +134,15 @@ export default {
   margin-left: 3vw;
 }
 
-.login-or-register__button-social {
+.login-or-register__button {
   width: 100%;
-  background-color: $white;
-  border-radius: 4px;
-  border: 1px solid $dark;
-  height: 45px;
+  border-radius: .2em;
+  height: 2.8em;
 }
 
+.login-or-register__button--social {
+  background-color: $white;
+  border: 1px solid $dark;
+}
 
 </style>
