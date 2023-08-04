@@ -1,5 +1,5 @@
 <template id="LoginOrRegister">
-  <div class="login-or-register">
+  <form class="login-or-register" @submit="checkForm" novalidate="true" action="">
     <div class="login-or-register__content">
 
       <h3 class="login-or-register__title">
@@ -13,11 +13,15 @@
 
       <h6 class="login-or-register__label">Mail</h6>
 
-      <input type="email" class="login-or-register__input" placeholder="nome.cognome@mail.com">
+      <input name="email" type="email" v-model="email" required v-bind:class="inputError" class="login-or-register__input" placeholder="nome.cognome@mail.com">
 
       <a class="login-or-register__forgot-mail" href="">Hai dimenticato la mail ?</a>
 
-      <button class="login-or-register__button login-or-register__button--continue" type="button">PROSEGUI</button>
+      <p v-if="errors.length" class="login-or-register__validation">
+        {{ this.errors[0] }}
+      </p>
+
+      <button class="login-or-register__button login-or-register__button--continue" type="submit">PROSEGUI</button>
 
       <p class="login-or-register__splitter">OPPURE</p>
 
@@ -26,7 +30,7 @@
       </button>
 
     </div>
-  </div>
+  </form>
 
 </template>
 
@@ -37,9 +41,11 @@ export default {
 
   props: [],
   watch: {},
+
   data: function () {
     return {
-      value: -1
+      errors: [],
+      email: null
     };
   },
   created: function () {
@@ -50,7 +56,37 @@ export default {
     this.value = -1;
   },
 
-  methods: {}
+  methods: {
+    checkForm: function (e) {
+      this.errors = [];
+
+      if (!this.email) {
+        this.errors.push("Il campo mail è obbligatorio")
+      } else if (!this.validEmail(this.email)) {
+        this.errors.push("Email non valida")
+      }
+
+      if (!this.errors.length) {
+        return true;
+      }
+
+      e.preventDefault();
+
+    },
+
+    validEmail: function (email) {
+      const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return regexEmail.test(email);
+    }
+  },
+
+  computed: {
+    inputError: function () {
+      return {
+        'input-error': !this.email && this.errors.length
+      }
+    }
+  }
 }
 </script>
 
@@ -96,6 +132,15 @@ export default {
 
 input[type=email] {
   padding-left: 1rem;
+}
+
+.input-error {
+  border-color: $red;
+}
+
+.login-or-register__validation {
+  margin-top: 1em;
+  color: $red;
 }
 
 .login-or-register__forgot-mail {
