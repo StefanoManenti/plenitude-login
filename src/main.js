@@ -1,7 +1,9 @@
 import Vue from 'vue'
+import "./components/Leopard/plugins/axios";
 import App from './App.vue'
 
 Vue.config.productionTip = false
+Vue.config.devtools = true;
 
 document.addEventListener("DOMContentLoaded", function() {
 
