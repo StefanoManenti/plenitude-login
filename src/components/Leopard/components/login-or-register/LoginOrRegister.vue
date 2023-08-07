@@ -1,5 +1,5 @@
 <template id="LoginOrRegister">
-  <form class="login-or-register" @submit="checkForm" novalidate="true" action="">
+  <form class="login-or-register" @submit="checkForm" novalidate="true">
     <div class="login-or-register__content">
 
       <h3 class="login-or-register__title">
@@ -13,7 +13,8 @@
 
       <h6 class="login-or-register__label">Mail</h6>
 
-      <input name="email" type="email" v-model="email" required v-bind:class="inputError" class="login-or-register__input" placeholder="nome.cognome@mail.com">
+      <input name="email" type="email" v-model="email" required v-bind:class="inputError"
+             class="login-or-register__input" placeholder="nome.cognome@mail.com">
 
       <a class="login-or-register__forgot-mail" href="">Hai dimenticato la mail ?</a>
 
@@ -21,7 +22,8 @@
         {{ this.errors[0] }}
       </p>
 
-      <button class="login-or-register__button login-or-register__button--continue" type="submit">PROSEGUI</button>
+      <button class="login-or-register__button login-or-register__button--continue" type="submit" >PROSEGUI</button>
+      <LoginOrRegisterModal v-if="displayModal"></LoginOrRegisterModal>
 
       <p class="login-or-register__splitter">OPPURE</p>
 
@@ -36,24 +38,21 @@
 
 <script>
 
+import LoginOrRegisterModal from "@/components/Leopard/components/modal/LoginOrRegisterModal.vue";
+
 export default {
   name: "LoginOrRegister",
 
-  props: [],
-  watch: {},
+  components: {
+    LoginOrRegisterModal
+  },
 
   data: function () {
     return {
       errors: [],
-      email: null
+      email: null,
+      displayModal: false
     };
-  },
-  created: function () {
-    this.value = -1;
-  },
-
-  beforeMount: function () {
-    this.value = -1;
   },
 
   methods: {
@@ -67,7 +66,8 @@ export default {
       }
 
       if (!this.errors.length) {
-        return true;
+        this.displayComponentModal();
+        // return true;
       }
 
       e.preventDefault();
@@ -77,6 +77,10 @@ export default {
     validEmail: function (email) {
       const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return regexEmail.test(email);
+    },
+
+    displayComponentModal() {
+      this.displayModal = true;
     }
   },
 
@@ -125,7 +129,7 @@ export default {
   width: 100%;
   border-radius: .2em;
   height: 2.8em;
-  border: 1px solid $gray30;
+  border: 1px solid $dark;
   margin-top: 0.3em;
   margin-bottom: 0.3em;
 }
