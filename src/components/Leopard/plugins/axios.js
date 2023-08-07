@@ -8,9 +8,12 @@ import axios from "axios";
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+
 let config = {
-    // baseURL: process.env.baseURL || process.env.apiUrl || ""
-    // timeout: 60 * 1000, // Timeout
+    // create file .env for baseUrl -> process.env.baseURL
+    baseURL: 'https://enigaseluce-evbs.eniplenitude.com/serviceDAbs/',
+    timeout: 60 * 1000, // Timeout
     // withCredentials: true, // Check cross-site Access-Control
 }
 

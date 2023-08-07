@@ -14,7 +14,7 @@
       <h6 class="login-or-register__label">Mail</h6>
 
       <input name="email" type="email" v-model="email" required v-bind:class="inputError"
-             class="login-or-register__input" placeholder="nome.cognome@mail.com">
+             class="login-or-register__input" placeholder="nome.cognome@mail.com" >
 
       <a class="login-or-register__forgot-mail" href="">Hai dimenticato la mail ?</a>
 
@@ -22,7 +22,7 @@
         {{ this.errors[0] }}
       </p>
 
-      <button class="login-or-register__button login-or-register__button--continue" type="submit" >PROSEGUI</button>
+      <button class="login-or-register__button login-or-register__button--continue" type="submit" @click="emailExistenceCheck">PROSEGUI</button>
       <LoginOrRegisterModal v-if="displayModal"></LoginOrRegisterModal>
 
       <p class="login-or-register__splitter">OPPURE</p>
@@ -81,6 +81,16 @@ export default {
 
     displayComponentModal() {
       this.displayModal = true;
+    },
+
+    emailExistenceCheck: async function() {
+      // const url = `api/registrazioneServices/${this.email}/verificaEsistenzaMail`;
+      // try {
+      //   const response = await window.axios.post(url);
+      //   console.log("response", response)
+      // } catch (error) {
+      //   console.log("error", error)
+      // }
     }
   },
 
