@@ -23,9 +23,10 @@
 
         <div class="registration__form-field-content">
           <div class="registration__form-field ">
-            <label for="name">Nome *</label>
+            <label v-bind:class="inputField.name.labelClassError" for="name">Nome *</label>
             <input v-on:blur="handleOutsideClickError($event)"
-                   class="registration__input" t
+                   class="registration__input"
+                   v-bind:class="inputField.name.inputClassError"
                    type="text"
                    v-model="inputField.name.text"
                    placeholder="Inserisici nome"
@@ -41,9 +42,10 @@
           </div>
 
           <div class="registration__form-field ">
-            <label for="lastName">Cognome *</label>
+            <label  v-bind:class="inputField.lastName.labelClassError" for="lastName">Cognome *</label>
             <input v-on:blur="handleOutsideClickError($event)"
                    class="registration__input"
+                   v-bind:class="inputField.lastName.inputClassError"
                    type="text"
                    placeholder="Inserisici cognome"
                    v-model="inputField.lastName.text"
@@ -60,9 +62,10 @@
         </div>
 
         <div class="registration__form-field registration__form-field--large">
-          <label for="password">Password *</label>
+          <label  v-bind:class="inputField.password.labelClassError" for="password">Password *</label>
           <input v-on:blur="handleOutsideClickError($event)"
                  class="registration__input "
+                 v-bind:class="inputField.password.inputClassError"
                  type=password
                  v-model="inputField.password.text"
                  placeholder="Inserisci password"
@@ -73,15 +76,17 @@
           <output
               v-show="inputField.password.error"
               role="alert"
-              class="registration__output-error">Il campo dev’essere compilato</output>
+              class="registration__output-error">Il campo dev’essere compilato
+          </output>
           <p>La password deve contenere un minimo di 8 caratteri, di cui uno maiuscolo (A-Z), un numero (0-9) ed un
             carattere speciale</p>
         </div>
 
         <div class="registration__form-field registration__form-field--large">
-          <label for="repeatPassword">Ripeti Password *</label>
+          <label v-bind:class="inputField.repeatPassword.labelClassError" for="repeatPassword">Ripeti Password *</label>
           <input v-on:blur="handleOutsideClickError($event)"
-                 class="registration__input "
+                 class="registration__input"
+                 v-bind:class="inputField.repeatPassword.inputClassError"
                  type="password"
                  v-model="inputField.repeatPassword.text"
                  placeholder="Inserisci password"
@@ -92,7 +97,8 @@
           <output
               v-show="inputField.repeatPassword.error"
               role="alert"
-              class="registration__output-error">Il campo dev’essere compilato</output>
+              class="registration__output-error">Il campo dev’essere compilato
+          </output>
         </div>
 
         <div>
@@ -132,22 +138,30 @@ export default {
   data: function () {
     return {
       mail: "test@gmail.com",
-      inputField : {
+      inputField: {
         name: {
           text: "",
-          error: false
+          error: false,
+          labelClassError: null,
+          inputClassError: null
         },
         lastName: {
           text: "",
-          error: false
+          error: false,
+          labelClassError: null,
+          inputClassError: null
         },
         password: {
           text: "",
-          error: false
+          error: false,
+          labelClassError: null,
+          inputClassError: null
         },
         repeatPassword: {
           text: "",
-          error: false
+          error: false,
+          labelClassError: null,
+          inputClassError: null
         }
       }
     };
@@ -157,16 +171,19 @@ export default {
     checkFormRegistration(e) {
       e.preventDefault();
 
-
-
     },
 
     handleOutsideClickError(e) {
       const {id, value} = e.target;
       if (!value.length) {
         this.inputField[id].error = true;
+        this.inputField[id].labelClassError = "registration__label--error";
+        this.inputField[id].inputClassError = "registration__input--error"
       } else {
         this.inputField[id].error = false;
+        this.inputField[id].labelClassError = null;
+        this.inputField[id].inputClassError = null;
+
       }
     }
 
@@ -188,7 +205,6 @@ export default {
 
 .registration__content {
   width: 30vw;
-  //margin: 4.5em auto auto;
 }
 
 .registration__title {
@@ -229,15 +245,14 @@ export default {
 }
 
 .registration__output-error {
-  //display: none;
-  color: rgb(157, 21, 28);
+  color: $red-ruby;
   font-size: 14px;
 }
 
 .registration__output-error:before {
   content: "!";
-  border: 1px solid #9d151c;
-  color: #9d151c;
+  border: 1px solid $red-ruby;
+  color: $red-ruby;
   border-radius: 50%;
   margin-right: 5px;
   font-weight: 900;
@@ -280,6 +295,21 @@ export default {
   flex-basis: 100%;
   gap: 15px;
 }
+
+.registration__label--error{
+  color: $red-ruby;
+}
+
+.registration__input--error {
+  background-color: rgb(252, 237, 238);
+  border-color: $red-ruby;
+
+  &::placeholder {
+    color: $red-ruby;
+  }
+}
+
+
 
 
 </style>
