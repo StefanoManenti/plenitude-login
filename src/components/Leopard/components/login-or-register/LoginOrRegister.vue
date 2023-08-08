@@ -39,6 +39,7 @@
 <script>
 
 import LoginOrRegisterModal from "@/components/Leopard/components/modal/LoginOrRegisterModal.vue";
+import { emailExistenceCheck } from "../../services/apiService"
 
 export default {
   name: "LoginOrRegister",
@@ -84,14 +85,8 @@ export default {
     },
 
     emailExistenceCheck: async function() {
-      const url = `api/registrazioneServices/${this.email}/verificaEsistenzaMail`;
-      try {
-        const response = await window.axios.post(url);
-        console.log("response", response)
-        // if success, navigate to registration page
-      } catch (error) {
-        console.log("error", error)
-      }
+      const response = await emailExistenceCheck(this.email);
+      console.log(response);
     }
   },
 
