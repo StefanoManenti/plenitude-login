@@ -7,7 +7,7 @@
 
           <div class="login-or-register-modal__header">
             <slot name="header">default header image</slot>
-            <img class="login-or-register-modal__close-image" src="../../../../assets/iconsClose.svg" @click="showModal">
+            <img class="login-or-register-modal__close-image" src="../../../../assets/iconsClose.svg">
           </div>
 
           <div class="login-or-register-modal__body">
@@ -106,9 +106,7 @@ export default {
       if (this.counterButtonContinue === Modal.STEP_SECOND) {
         this.indicators.showIndicatorSecond = true;
         this.indicators.showIndicatorFirst = false;
-      }
-
-      else if (this.counterButtonContinue === Modal.STEP_THIRD) {
+      } else if (this.counterButtonContinue === Modal.STEP_THIRD) {
         this.image = ""
 
         this.buttons.buttonContinue = false;
@@ -135,9 +133,7 @@ export default {
 
         this.indicators.showIndicatorThird = false;
         this.indicators.showIndicatorSecond = true;
-      }
-
-      else { // return to first step
+      } else { // return to first step
         this.buttons.buttonBack = false;
         this.indicators.showIndicatorSecond = false
         this.indicators.showIndicatorFirst = true;
@@ -155,7 +151,7 @@ export default {
       return this.indicators.showIndicatorFirst ? 'login-or-register-modal__indicator--checked' : null
     },
 
-    indicatorSecond: function() {
+    indicatorSecond: function () {
       return this.indicators.showIndicatorSecond ? 'login-or-register-modal__indicator--checked' : null
     },
 
@@ -200,7 +196,7 @@ export default {
   margin: 0px auto;
   padding: 1.3em 1.8em;
   background-color: $white;
-  border-radius: 0.1em;
+  border-radius: 0.5em;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
 }
@@ -249,7 +245,7 @@ export default {
 }
 
 .login-or-register-modal__indicator--checked {
-    background-color: $white;
+  background-color: $white;
 }
 
 .login-or-register-modal__close-image {
