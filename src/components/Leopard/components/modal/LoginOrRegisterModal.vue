@@ -6,8 +6,10 @@
         <div class="login-or-register-modal__container">
 
           <div class="login-or-register-modal__header">
-            <slot name="header">default header image</slot>
-            <img class="login-or-register-modal__close-image" src="../../../../assets/iconsClose.svg">
+            <slot name="header">
+              <img class="login-or-register-modal__close-image" src="../../../../assets/iconsClose.svg">
+              <img class="login-or-register-modal__image-header" v-bind:src="image">
+            </slot>
           </div>
 
           <div class="login-or-register-modal__body">
@@ -56,22 +58,82 @@
 
 <script>
 
-const BodyModal = {
-  continue: {
-    textTitle: "Un'unica registrazione per tutte le nostre App.",
-    textContent: "Accedi a Enjoy, EniLive e Plenitude con le stesse credenziali"
+const MODAL_FLOW = {
+  header: {
+    welcome: {
+      img: require("../../../../assets/welcomeEni.svg")
+    },
+    introduction: {
+      img: require("../../../../assets/introductionEni.svg")
+    },
+    start: {
+      img: require("../../../../assets/startEni.svg")
+    }
   },
-  start: {
-    textTitle: "Inizia da Plenitude",
-    textContent: "Un nuovo modo per gestire gas e luce, sempre sotto controllo."
+  body: {
+    welcome: {
+      textTitle: "Un'unica registrazione per tutte le nostre App.",
+      textContent: "Accedi a Enjoy, EniLive e Plenitude con le stesse credenziali"
+    },
+    introduction: {
+      textTitle: "Un'unica registrazione per tutte le nostre App.",
+      textContent: "Accedi a Enjoy, EniLive e Plenitude con le stesse credenziali"
+    },
+    start: {
+      textTitle: "Inizia da Plenitude",
+      textContent: "Un nuovo modo per gestire gas e luce, sempre sotto controllo."
+    }
+
+  },
+  footer: {
+    welcome: {
+      buttons: {
+        buttonContinue: true,
+        buttonBack: false,
+        buttonStart: false,
+      },
+      indicators: {
+        showIndicatorFirst: true,
+        showIndicatorSecond: false,
+        showIndicatorThird: false
+      },
+      stepFirst: 1
+    },
+    introduction: {
+      buttons: {
+        buttonContinue: true,
+        buttonBack: true,
+        buttonStart: false,
+      },
+      indicators: {
+        showIndicatorFirst: false,
+        showIndicatorSecond: true,
+        showIndicatorThird: false
+      },
+      stepSecond: 2
+    },
+    start: {
+      buttons: {
+        buttonContinue: false,
+        buttonStart: true,
+        buttonBack: true,
+      },
+      indicators: {
+        showIndicatorFirst: false,
+        showIndicatorSecond: false,
+        showIndicatorThird: true
+      },
+      stepThird: 3
+    }
   }
 }
 
-const Modal = {
-  STEP_FIRST: 0,
-  STEP_SECOND: 1,
-  STEP_THIRD: 2
-}
+const MODAL_STEPS = {
+  FIRST: 0,
+  SECOND: 1,
+  THIRD: 2
+};
+
 
 export default {
   name: "LoginOrRegisterModal",
@@ -84,60 +146,53 @@ export default {
         buttonStart: false
       },
       body: {
-        textTitle: BodyModal.continue.textTitle,
-        textContent: BodyModal.continue.textContent
+        textTitle: MODAL_FLOW.body.welcome.textTitle,
+        textContent: MODAL_FLOW.body.welcome.textContent
       },
       indicators: {
         showIndicatorFirst: true,
         showIndicatorSecond: false,
         showIndicatorThird: false
       },
-      image: "",
+      image: MODAL_FLOW.header.welcome.img,
       counterButtonContinue: 0
     }
   },
 
   methods: {
+
     buttonContinue: function () {
-      this.image = ""
-      this.buttons.buttonBack = true;
       this.counterButtonContinue++;
 
-      if (this.counterButtonContinue === Modal.STEP_SECOND) {
-        this.indicators.showIndicatorSecond = true;
-        this.indicators.showIndicatorFirst = false;
-      } else if (this.counterButtonContinue === Modal.STEP_THIRD) {
-        this.image = ""
-
-        this.buttons.buttonContinue = false;
-        this.buttons.buttonStart = true;
-
-        this.body.textTitle = BodyModal.start.textTitle;
-        this.body.textContent = BodyModal.start.textContent;
-
-        this.indicators.showIndicatorThird = true
-        this.indicators.showIndicatorSecond = false;
-
+      if (this.counterButtonContinue === MODAL_STEPS.SECOND) {
+        this.setModalIntroduction()
+      } else if (this.counterButtonContinue === MODAL_STEPS.THIRD) {
+        this.body = {...this.body, ...MODAL_FLOW.body.start}
+        this.image = MODAL_FLOW.header.start.img;
+        this.buttons = {...this.buttons, ...MODAL_FLOW.footer.start.buttons}
+        this.indicators = {...this.indicators, ...MODAL_FLOW.footer.start.indicators}
       }
     },
 
     buttonBack: function () {
-      this.image = ""; // change photo
       this.counterButtonContinue--;
 
-      if (this.counterButtonContinue === Modal.STEP_SECOND) {
-        this.buttons.buttonStart = false;
-        this.buttons.buttonContinue = true;
-        this.body.textTitle = BodyModal.continue.textTitle;
-        this.body.textContent = BodyModal.continue.textContent;
+      if (this.counterButtonContinue === MODAL_STEPS.SECOND) {
+        this.setModalIntroduction()
 
-        this.indicators.showIndicatorThird = false;
-        this.indicators.showIndicatorSecond = true;
       } else { // return to first step
-        this.buttons.buttonBack = false;
-        this.indicators.showIndicatorSecond = false
-        this.indicators.showIndicatorFirst = true;
+        this.body = {...this.body, ...MODAL_FLOW.body.welcome}
+        this.image = MODAL_FLOW.header.welcome.img
+        this.buttons = {...this.buttons, ...MODAL_FLOW.footer.welcome.buttons}
+        this.indicators = {...this.indicators, ...MODAL_FLOW.footer.welcome.indicators}
       }
+    },
+
+    setModalIntroduction() {
+      this.body = {...this.body, ...MODAL_FLOW.body.introduction}
+      this.image = MODAL_FLOW.header.introduction.img;
+      this.buttons = {...this.buttons, ...MODAL_FLOW.footer.introduction.buttons}
+      this.indicators = {...this.indicators, ...MODAL_FLOW.footer.introduction.indicators}
     },
 
     buttonStart: function () {
@@ -194,7 +249,7 @@ export default {
   width: 42em;
   height: 39em;
   margin: 0px auto;
-  padding: 1.3em 1.8em;
+  //padding: 1.3em 1.8em;
   background-color: $white;
   border-radius: 0.5em;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
@@ -222,10 +277,17 @@ export default {
   justify-content: center;
   gap: 15px;
   flex-grow: 1;
+  padding-top: .8em;
+  padding-bottom: 1.8em;
+}
+
+.login-or-register-modal__body {
+  padding-left: 3em;;
 }
 
 .login-or-register-modal__header {
   flex-grow: 10;
+  position: relative;
 }
 
 .login-or-register-modal__indicator {
@@ -249,7 +311,13 @@ export default {
 }
 
 .login-or-register-modal__close-image {
-  float: right;
+  position: absolute;
+  right: 20px;
+  top: 30px;
+}
+
+.login-or-register-modal__image-header {
+  width: 100%;
 }
 
 
