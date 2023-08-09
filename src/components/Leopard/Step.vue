@@ -1,16 +1,17 @@
 <template id="step">
     <div class="step bounceIn">
         <div class="container">
-            
-            <login-or-register></login-or-register>
-            <registration></registration>
-
+            <login-or-register v-if="stepCurrent == 'login-or-register'"></login-or-register>
+            <registration v-if="stepCurrent == 'registration'"></registration>
         </div>
+
+        <switcher @update-component="onUpdateComponent"></switcher>
     </div>
 </template>
 
 
 <script>
+import Switcher from './components/switcher/Switcher.vue';
 import LoginOrRegister from './components/loginorregister/LoginOrRegister.vue';
 import Registration from './components/registration/Registration.vue';
 
@@ -20,6 +21,7 @@ export default {
     name: "Step",
 
     components: {
+        Switcher,
         LoginOrRegister,
         Registration,
     },
@@ -27,7 +29,7 @@ export default {
     props: ['step', 'index'],
     data: function () {
         return {
-        
+            stepCurrent: "login-or-register",
         };
     },
 
@@ -41,6 +43,10 @@ export default {
     },
 
     methods: {
+        onUpdateComponent: function(cmp) {
+            console.log('onUpdateComponent', cmp);
+            this.stepCurrent = cmp;
+        }
 
         /*
         goPrev: function () {
