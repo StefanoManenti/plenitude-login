@@ -22,84 +22,56 @@
       <div class="registration__form">
 
         <div class="registration__form-field-content">
-          <div class="registration__form-field ">
-            <label v-bind:class="inputField.name.labelClassError" for="name">Nome *</label>
-            <input v-on:blur="handleOutsideClickError($event)"
-                   class="registration__input"
-                   v-bind:class="inputField.name.inputClassError"
-                   type="text"
-                   v-model="inputField.name.text"
-                   placeholder="Inserisici nome"
-                   id="name"
-                   name="name"
-                   aria-label="Nome"
-                   required="">
-            <output
-                v-show="inputField.name.error"
-                role="alert"
-                class="registration__output-error">Il campo dev’essere compilato
-            </output>
-          </div>
 
-          <div class="registration__form-field ">
-            <label v-bind:class="inputField.lastName.labelClassError" for="lastName">Cognome *</label>
-            <input v-on:blur="handleOutsideClickError($event)"
-                   class="registration__input"
-                   v-bind:class="inputField.lastName.inputClassError"
-                   type="text"
-                   placeholder="Inserisici cognome"
-                   v-model="inputField.lastName.text"
-                   id="lastName"
-                   name="lastName"
-                   aria-label="Cognome"
-                   required="">
-            <output
-                v-show="inputField.lastName.error"
-                role="alert"
-                class="registration__output-error">Il campo dev’essere compilato
-            </output>
-          </div>
+          <Input
+              id="name"
+              name="name"
+              aria-label="name"
+              placeholder="Inserisci nome"
+              :inputValue="inputField.name.text"
+              forLabel="name"
+              label="Nome *"
+              outputError="Il campo dev’essere compilato"
+          />
+
+          <Input
+              id="lastName"
+              name="lastName"
+              aria-label="Inserisci cognome"
+              placeholder="Inserisici cognome"
+              :inputValue="inputField.lastName.text"
+              forLabel="lastName"
+              label="Cognome *"
+              outputError="Il campo dev’essere compilato"
+          />
+
         </div>
 
-        <div class="registration__form-field registration__form-field--large">
-          <label v-bind:class="inputField.password.labelClassError" for="password">Password *</label>
-          <input v-on:blur="handleOutsideClickError($event)"
-                 class="registration__input "
-                 v-bind:class="inputField.password.inputClassError"
-                 type=password
-                 v-model="inputField.password.text"
-                 placeholder="Inserisci password"
-                 id="password"
-                 name="password"
-                 aria-label="Password"
-                 required="">
-          <output
-              v-show="inputField.password.error"
-              role="alert"
-              class="registration__output-error">Il campo dev’essere compilato
-          </output>
-          <p>La password deve contenere un minimo di 8 caratteri, di cui uno maiuscolo (A-Z), un numero (0-9) ed un
-            carattere speciale</p>
-        </div>
+        <Input
+            id="password"
+            name="password"
+            aria-label="Inserisci password"
+            placeholder="Inserisici password"
+            :inputValue="inputField.password.text"
+            type="password"
+            forLabel="password"
+            label="Password *"
+            outputError="Il campo dev’essere compilato"
+        />
+        <p>La password deve contenere un minimo di 8 caratteri, di cui uno maiuscolo (A-Z), un numero (0-9) ed un
+          carattere speciale</p>
 
-        <div class="registration__form-field registration__form-field--large">
-          <label v-bind:class="inputField.repeatPassword.labelClassError" for="repeatPassword">Ripeti Password *</label>
-          <input v-on:blur="handleOutsideClickError($event)"
-                 class="registration__input"
-                 v-bind:class="inputField.repeatPassword.inputClassError"
-                 type="password"
-                 v-model="inputField.repeatPassword.text"
-                 placeholder="Inserisci password"
-                 id="repeatPassword"
-                 name="repeatPassword"
-                 aria-label="Ripeti password"
-                 required="">
-          <output
-              v-show="inputField.repeatPassword.error"
-              role="alert"
-              class="registration__output-error">Il campo dev’essere compilato
-          </output>
-        </div>
+        <Input
+            id="repeatPassword"
+            name="repeatPassword"
+            aria-label="Ripeti password"
+            placeholder="Ripeti password"
+            :inputValue="inputField.repeatPassword.text"
+            type="password"
+            forLabel="repeatPassword"
+            label="Ripeti password *"
+            outputError="Il campo dev’essere compilato"
+        />
 
         <div>
           <p>* Campi obbligatori</p>
@@ -140,10 +112,11 @@
 <script>
 
 import Button from "@/components/Leopard/components/common/Button.vue";
+import Input from "@/components/Leopard/components/common/Input.vue";
 
 export default {
   name: "Registration",
-  components: {Button},
+  components: {Button, Input},
 
   data: function () {
     return {

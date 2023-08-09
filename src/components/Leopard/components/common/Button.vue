@@ -14,9 +14,7 @@
 
   </button>
 
-
 </template>
-
 
 <script>
 
@@ -78,7 +76,10 @@ export default {
   border-radius: .3em;
   width: 100%;
   height: 3em;
+  border: solid 1px;
 }
+
+
 
 .button-contained {
   border: unset;

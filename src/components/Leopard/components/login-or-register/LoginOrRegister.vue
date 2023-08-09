@@ -32,6 +32,7 @@
           @click="emailExistenceCheck">
         PROSEGUI
       </Button>
+
       <LoginOrRegisterModal v-if="displayModal"></LoginOrRegisterModal>
 
       <p class="login-or-register__splitter">OPPURE</p>
