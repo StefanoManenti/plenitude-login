@@ -20,9 +20,12 @@
           ariaLabel="Inserisci email"
           forLabel="email"
           label="Mail"
+          outputError="Il campo dev’essere compilato"
       />
 
-      <a class="login-or-register__forgot-mail" href="">Hai dimenticato la mail ?</a>
+      <div class="login-or-register__forgot-mail">
+        <a class="login-or-register__forgot-mail-anchor" href="">Hai dimenticato la mail ?</a>
+      </div>
 
       <Button
           class="login-or-register__button--continue"
@@ -144,8 +147,14 @@ input[type=email] {
 }
 
 .login-or-register__forgot-mail {
-  color: rgb(9, 88, 165);
+
   font-weight: 600;
+  margin-top: .3rem;
+}
+
+.login-or-register__forgot-mail-anchor {
+  color: rgb(9, 88, 165);
+  text-decoration: underline;
 }
 
 .login-or-register__button--continue {

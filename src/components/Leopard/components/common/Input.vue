@@ -17,13 +17,13 @@
         :id="id"
         :name="name"
         :aria-label="ariaLabel"
-         />
-    <output
+    />
+    <p
         v-show="showOutputError"
         role="alert"
         class="output-error">
       {{ outputError }}
-    </output>
+    </p>
   </div>
 </template>
 
@@ -111,7 +111,6 @@ export default {
         this.showOutputError = false;
         this.labelClassError = null;
         this.inputClassError = null;
-
       }
     }
   }
@@ -141,6 +140,7 @@ export default {
 .output-error {
   color: $red-ruby;
   font-size: 14px;
+  margin-top: 0.2rem;
 }
 
 .output-error:before {
