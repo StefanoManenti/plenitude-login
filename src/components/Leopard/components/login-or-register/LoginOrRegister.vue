@@ -22,14 +22,21 @@
         {{ this.errors[0] }}
       </p>
 
-      <button class="login-or-register__button login-or-register__button--continue" type="submit" @click="emailExistenceCheck">PROSEGUI</button>
+<!--      <button class="login-or-register__button login-or-register__button&#45;&#45;continue" type="submit" @click="emailExistenceCheck">PROSEGUI</button>-->
+      <Button
+          class="login-or-register__button--continue"
+          color="button-yellow"
+          variant="button-contained"
+          aria-label="prosegui"
+          type="submit"
+          @click="emailExistenceCheck">
+        PROSEGUI
+      </Button>
       <LoginOrRegisterModal v-if="displayModal"></LoginOrRegisterModal>
 
       <p class="login-or-register__splitter">OPPURE</p>
 
-      <button class="login-or-register__button login-or-register__button--social">
-        PROSEGUI TRAMITE SOCIAL
-      </button>
+      <Button color="button-white">PROSEGUI TRAMITE SOCIAL</Button>
 
     </div>
   </form>
@@ -40,11 +47,13 @@
 
 import LoginOrRegisterModal from "@/components/Leopard/components/modal/LoginOrRegisterModal.vue";
 import { emailExistenceCheck } from "../../services/apiService"
+import Button from "@/components/Leopard/components/common/Button.vue";
 
 export default {
   name: "LoginOrRegister",
 
   components: {
+    Button,
     LoginOrRegisterModal
   },
 
@@ -159,8 +168,6 @@ input[type=email] {
 }
 
 .login-or-register__button--continue {
-  background: $primary;
-  border: unset;
   margin-top: 1.8em;
   margin-bottom: 1.2em;
 }
@@ -187,17 +194,6 @@ input[type=email] {
 
 .login-or-register__splitter::after {
   margin-left: 3vw;
-}
-
-.login-or-register__button {
-  width: 100%;
-  border-radius: .2em;
-  height: 2.8em;
-}
-
-.login-or-register__button--social {
-  background-color: $white;
-  border: 1px solid $dark;
 }
 
 </style>

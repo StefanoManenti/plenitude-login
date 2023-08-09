@@ -21,20 +21,35 @@
 
           <div class="login-or-register-modal__footer">
             <slot name="footer">
-              <button v-if="buttons.buttonBack"
-                      class="login-or-register-modal__button login-or-register-modal__button--back" @click="buttonBack">
+              <Button v-if="buttons.buttonBack"
+                      size="button-small"
+                      color="button-white"
+                      aria-label="indietro"
+                      @click="buttonBack"
+              >
                 INDIETRO
-              </button>
-              <button v-if="buttons.buttonContinue"
-                      class="login-or-register-modal__button login-or-register-modal__button--next"
-                      @click="buttonContinue">
+              </Button>
+              <Button
+                  v-if="buttons.buttonContinue"
+                  variant="button-contained"
+                  color="button-yellow"
+                  size="button-small"
+                  aria-label="avanti"
+                  @click="buttonContinue"
+              >
                 AVANTI
-              </button>
-              <button v-if="buttons.buttonStart"
-                      class="login-or-register-modal__button login-or-register-modal__button--next"
-                      @click="buttonStart">
+              </Button>
+              <Button
+                  v-if="buttons.buttonStart"
+                  variant="button-contained"
+                  color="button-yellow"
+                  size="button-small"
+                  aria-label="inizia"
+                  @click="buttonStart"
+              >
                 INIZIA
-              </button>
+              </Button>
+
             </slot>
           </div>
 
@@ -57,6 +72,8 @@
 
 
 <script>
+
+import Button from "@/components/Leopard/components/common/Button.vue";
 
 const MODAL_FLOW = {
   header: {
@@ -137,6 +154,7 @@ const MODAL_STEPS = {
 
 export default {
   name: "LoginOrRegisterModal",
+  components: {Button},
 
   data: function () {
     return {
@@ -249,27 +267,10 @@ export default {
   width: 42em;
   height: 39em;
   margin: 0px auto;
-  //padding: 1.3em 1.8em;
   background-color: $white;
   border-radius: 0.5em;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
-}
-
-.login-or-register-modal__button {
-  border-radius: .3em;
-  width: 13em;
-  height: 3em;
-}
-
-.login-or-register-modal__button--next {
-  border: unset;
-  background-color: $primary;
-}
-
-.login-or-register-modal__button--back {
-  border: solid 1px;
-  background-color: $white;
 }
 
 .login-or-register-modal__footer {
@@ -304,10 +305,6 @@ export default {
   border-radius: 10px;
   margin-left: 2px;
   cursor: unset;
-}
-
-.login-or-register-modal__indicator--checked {
-  background-color: $white;
 }
 
 .login-or-register-modal__close-image {

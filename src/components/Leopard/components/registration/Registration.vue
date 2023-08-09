@@ -42,7 +42,7 @@
           </div>
 
           <div class="registration__form-field ">
-            <label  v-bind:class="inputField.lastName.labelClassError" for="lastName">Cognome *</label>
+            <label v-bind:class="inputField.lastName.labelClassError" for="lastName">Cognome *</label>
             <input v-on:blur="handleOutsideClickError($event)"
                    class="registration__input"
                    v-bind:class="inputField.lastName.inputClassError"
@@ -62,7 +62,7 @@
         </div>
 
         <div class="registration__form-field registration__form-field--large">
-          <label  v-bind:class="inputField.password.labelClassError" for="password">Password *</label>
+          <label v-bind:class="inputField.password.labelClassError" for="password">Password *</label>
           <input v-on:blur="handleOutsideClickError($event)"
                  class="registration__input "
                  v-bind:class="inputField.password.inputClassError"
@@ -112,14 +112,21 @@
         </div>
 
         <div class="registration__buttons">
-          <button ref="button" type="button" class="registration__button registration__button-back"
-                  aria-label="Torna indietro">TORNA
+          <Button
+              color="button-white"
+              aria-label="Torna indietro"
+          >
             INDIETRO
-          </button>
-          <button ref="button" type="button" class="registration__button registration__button-continue"
-                  aria-label="Continua">
+          </Button>
+          <Button
+              variant="button-contained"
+              color="button-yellow"
+              aria-label="Continua"
+          >
             CONTINUA
-          </button>
+          </Button>
+
+
         </div>
 
       </div>
@@ -132,8 +139,11 @@
 
 <script>
 
+import Button from "@/components/Leopard/components/common/Button.vue";
+
 export default {
   name: "Registration",
+  components: {Button},
 
   data: function () {
     return {
@@ -266,6 +276,7 @@ export default {
 .registration__anchor {
   text-decoration: underline;
   color: rgb(9, 88, 165);
+  font-weight: 600;
 }
 
 .registration__buttons {
@@ -296,7 +307,7 @@ export default {
   gap: 15px;
 }
 
-.registration__label--error{
+.registration__label--error {
   color: $red-ruby;
 }
 
@@ -308,8 +319,6 @@ export default {
     color: $red-ruby;
   }
 }
-
-
 
 
 </style>
