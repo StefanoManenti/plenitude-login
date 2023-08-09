@@ -1,36 +1,37 @@
 <template id="step">
-  <div class="step bounceIn">
-    <div class="step__content">
+    <div class="step bounceIn">
+        <div class="container">
+            <login-or-register v-if="stepCurrent == 'login-or-register'"></login-or-register>
+            <registration v-if="stepCurrent == 'registration'"></registration>
+        </div>
 
-<!--      <div class="step__editorial">-->
-<!--        <picture></picture>-->
-<!--      </div>-->
-
-      <login-or-register></login-or-register>
-
+        <switcher @update-component="onUpdateComponent"></switcher>
     </div>
-  </div>
 </template>
 
 
 <script>
+import Switcher from './components/switcher/Switcher.vue';
 import LoginOrRegister from './components/login-or-register/LoginOrRegister.vue';
-// import Registration from './components/registration/Registration.vue';
+import Registration from './components/registration/Registration.vue';
 
 // import { trackButton } from "./services/analytics";
 
 export default {
   name: "Step",
 
-  components: {
-    LoginOrRegister,
-    // Registration,
-  },
+    components: {
+        Switcher,
+        LoginOrRegister,
+        Registration,
+    },
 
-  props: ['step', 'index'],
-  data: function () {
-    return {};
-  },
+    props: ['step', 'index'],
+    data: function () {
+        return {
+            stepCurrent: "login-or-register",
+        };
+    },
 
   created: function () {
 
@@ -41,7 +42,11 @@ export default {
     console.log("Step id: ", this.step.id);
   },
 
-  methods: {
+    methods: {
+        onUpdateComponent: function(cmp) {
+            console.log('onUpdateComponent', cmp);
+            this.stepCurrent = cmp;
+        }
 
     /*
     goPrev: function () {
