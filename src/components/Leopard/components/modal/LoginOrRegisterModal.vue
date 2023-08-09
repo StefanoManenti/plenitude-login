@@ -53,17 +53,18 @@
             </slot>
           </div>
 
+          <div class="login-or-register-modal__indicator">
+            <ul>
+              <input type="radio" v-bind:class="indicatorFirst" disabled>
+              <input type="radio" v-bind:class="indicatorSecond" disabled>
+              <input type="radio" v-bind:class="indicatorThird" disabled>
+            </ul>
+          </div>
+
         </div>
 
       </div>
 
-      <div class="login-or-register-modal__indicator">
-        <ul>
-          <input type="radio" v-bind:class="indicatorFirst" disabled>
-          <input type="radio" v-bind:class="indicatorSecond" disabled>
-          <input type="radio" v-bind:class="indicatorThird" disabled>
-        </ul>
-      </div>
     </div>
   </transition>
 
@@ -150,7 +151,6 @@ const MODAL_STEPS = {
   SECOND: 1,
   THIRD: 2
 };
-
 
 export default {
   name: "LoginOrRegisterModal",
@@ -271,6 +271,7 @@ export default {
   border-radius: 0.5em;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .login-or-register-modal__footer {
@@ -293,7 +294,7 @@ export default {
 
 .login-or-register-modal__indicator {
   position: absolute;
-  bottom: 10%;
+  bottom: -3em;
   left: 50%;
 }
 
@@ -315,6 +316,10 @@ export default {
 
 .login-or-register-modal__image-header {
   width: 100%;
+}
+
+.login-or-register-modal__indicator--checked {
+  background-color: $white;
 }
 
 

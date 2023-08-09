@@ -11,12 +11,13 @@
         class="input"
         :class="[customClassInput, inputClassError]"
         :type="type"
-        v-model="inputValue"
+        :value="value"
+        @input="onInput"
         :placeholder="placeholder"
         :id="id"
         :name="name"
         :aria-label="ariaLabel"
-        required="" />
+         />
     <output
         v-show="showOutputError"
         role="alert"
@@ -79,11 +80,10 @@ export default {
       required: true,
       default: null
     },
-    inputValue: {
+    value: {
       type: String,
       required: true,
-      default: null
-    },
+    }
 
   },
 
@@ -96,6 +96,10 @@ export default {
   },
 
   methods: {
+
+    onInput(event) {
+      this.$emit('input', event.target.value);
+    },
 
     handleOutsideClickError(e) {
       const {value} = e.target;

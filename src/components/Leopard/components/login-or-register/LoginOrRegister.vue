@@ -11,25 +11,27 @@
         app, utilizza la stessa e-mail.
       </p>
 
-      <h6 class="login-or-register__label">Mail</h6>
-
-      <input name="email" type="email" v-model="email" required v-bind:class="inputError"
-             class="login-or-register__input" placeholder="nome.cognome@mail.com" >
+      <Input
+          name="email"
+          id="email"
+          type="email"
+          v-model="email"
+          placeholder="nome.cognome@mail.com"
+          ariaLabel="Inserisci email"
+          forLabel="email"
+          label="Mail"
+      />
 
       <a class="login-or-register__forgot-mail" href="">Hai dimenticato la mail ?</a>
 
-      <p v-if="errors.length" class="login-or-register__validation">
-        {{ this.errors[0] }}
-      </p>
-
-<!--      <button class="login-or-register__button login-or-register__button&#45;&#45;continue" type="submit" @click="emailExistenceCheck">PROSEGUI</button>-->
       <Button
           class="login-or-register__button--continue"
           color="button-yellow"
           variant="button-contained"
           aria-label="prosegui"
           type="submit"
-          @click="emailExistenceCheck">
+          @click="emailExistenceCheck"
+      >
         PROSEGUI
       </Button>
 
@@ -47,20 +49,21 @@
 <script>
 
 import LoginOrRegisterModal from "@/components/Leopard/components/modal/LoginOrRegisterModal.vue";
-import { emailExistenceCheck } from "../../services/apiService"
+import {emailExistenceCheck} from "../../services/apiService"
 import Button from "@/components/Leopard/components/common/Button.vue";
+import Input from "@/components/Leopard/components/common/Input.vue";
 
 export default {
   name: "LoginOrRegister",
 
   components: {
+    Input,
     Button,
     LoginOrRegisterModal
   },
 
   data: function () {
     return {
-      errors: [],
       email: null,
       displayModal: false
     };
@@ -68,45 +71,22 @@ export default {
 
   methods: {
     checkForm: function (e) {
-      this.errors = [];
-
-      if (!this.email) {
-        this.errors.push("Il campo mail è obbligatorio")
-      } else if (!this.validEmail(this.email)) {
-        this.errors.push("Email non valida")
-      }
-
-      if (!this.errors.length) {
-        this.displayComponentModal();
-        // return true;
-      }
+      this.displayComponentModal()
 
       e.preventDefault();
 
-    },
-
-    validEmail: function (email) {
-      const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return regexEmail.test(email);
     },
 
     displayComponentModal() {
       this.displayModal = true;
     },
 
-    emailExistenceCheck: async function() {
+    emailExistenceCheck: async function () {
       const response = await emailExistenceCheck(this.email);
       console.log(response);
     }
   },
 
-  computed: {
-    inputError: function () {
-      return {
-        'input-error': !this.email && this.errors.length
-      }
-    }
-  }
 }
 </script>
 
