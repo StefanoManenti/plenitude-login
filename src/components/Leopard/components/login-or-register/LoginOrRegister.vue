@@ -1,45 +1,49 @@
 <template id="LoginOrRegister">
-  <form class="login-or-register" @submit="checkForm" novalidate="true">
-    <div class="login-or-register__content">
+  <form needs-validation="true" class="login-or-register" @submit="checkForm">
+    <div class="component-content">
 
-      <h3 class="login-or-register__title">
+      <h3 class="title">
         Accedi o registrati
       </h3>
 
-      <p class="login-or-register__text">
+      <p class="text">
         Accedi con le tue credenziali o registrati. Se sei già un utente delle nostre
         app, utilizza la stessa e-mail.
       </p>
 
-      <Input
-          name="email"
-          id="email"
-          type="email"
-          v-model="email"
-          placeholder="nome.cognome@mail.com"
-          ariaLabel="Inserisci email"
-          forLabel="email"
-          label="Mail"
-      />
+      <div pln-component="input-text" pln-version="1.0" pln-template="">
+        <div class="form-field">
+          <label for="email">Email*</label>
+          <input type="email" id="email" name="email" aria-label="Email" placeholder="nome.cognome@mail.com"
+                 required="">
+          <output role="alert" class="blank">Inserisci un indirizzo email valido.</output>
+        </div>
+      </div>
 
-      <a class="login-or-register__forgot-mail" href="">Hai dimenticato la mail ?</a>
+      <div class="link-bottom-input">
+        <a class="link" href="">Hai dimenticato la mail ?</a>
+      </div>
 
-      <Button
-          class="login-or-register__button--continue"
-          color="button-yellow"
-          variant="button-contained"
+      <button
+          class="pln-btn-primary"
           aria-label="prosegui"
           type="submit"
           @click="emailExistenceCheck"
       >
         PROSEGUI
-      </Button>
+      </button>
 
       <LoginOrRegisterModal v-if="displayModal"></LoginOrRegisterModal>
 
       <p class="login-or-register__splitter">OPPURE</p>
 
-      <Button color="button-white">PROSEGUI TRAMITE SOCIAL</Button>
+      <button
+          class="pln-btn-secondary btn-outline"
+          aria-label="Prosegui tramite social"
+          @click="emailExistenceCheck"
+      >
+        PROSEGUI TRAMITE SOCIAL
+      </button>
 
     </div>
   </form>
@@ -50,15 +54,11 @@
 
 import LoginOrRegisterModal from "@/components/Leopard/components/modal/LoginOrRegisterModal.vue";
 import {emailExistenceCheck} from "../../services/apiService"
-import Button from "@/components/Leopard/components/common/Button.vue";
-import Input from "@/components/Leopard/components/common/Input.vue";
 
 export default {
   name: "LoginOrRegister",
 
   components: {
-    Input,
-    Button,
     LoginOrRegisterModal
   },
 
@@ -95,25 +95,15 @@ export default {
 
 @import "src/components/Leopard/styles/variables";
 
+.pln-btn-primary {
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+
 .login-or-register {
   display: flex;
   flex-direction: row;
   flex-basis: 100%;
-}
-
-.login-or-register__content {
-  margin: 4.5em auto auto;
-  width: 30vw;
-}
-
-.login-or-register__title {
-  margin-bottom: .5em;
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-.login-or-register__text {
-  font-size: 1rem;
 }
 
 .login-or-register__label {
@@ -176,5 +166,6 @@ input[type=email] {
 .login-or-register__splitter::after {
   margin-left: 3vw;
 }
+
 
 </style>

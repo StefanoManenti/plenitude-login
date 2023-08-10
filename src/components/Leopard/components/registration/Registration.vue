@@ -1,77 +1,65 @@
 <template id="Registration">
-  <form class="registration" @submit="checkFormRegistration" novalidate="true">
-    <div class="registration__content">
+  <form needs-validation="true" class="registration" @submit="checkFormRegistration">
+    <div class="component-content">
 
-      <h3 class="registration__title">
+      <h3 class="title">
         Registrazione
       </h3>
 
-      <h4 class="registration__sub-title">
+      <h4 class="sub-title">
         Inserisci dati
       </h4>
 
-      <p class="registration__text">
+      <p class="text">
         Crea un account unico per accedere a tutte le app Eni.
       </p>
 
-      <div class="registration__your-mail">
+      <div class="text-your-mail">
         La tua mail:
       </div>
       <p>{{ this.mail }}</p>
 
-      <div class="registration__form">
+      <div class="registration-form">
 
-        <div class="registration__form-field-content">
+        <div class="form-field-content">
 
-          <Input
-              id="name"
-              name="name"
-              aria-label="name"
-              placeholder="Inserisci nome"
-              v-model="inputField.name.text"
-              forLabel="name"
-              label="Nome *"
-              outputError="Il campo dev’essere compilato"
-          />
+          <div pln-component="input-text" pln-version="1.0" pln-template="" class="form-field-container">
+            <div class="form-field">
+              <label for="nome">Nome*</label>
+              <input type="text" value="" id="nome" name="nome" aria-label="Nome" required="">
+              <output role="alert" class="blank">Questo campo è obbligatorio.</output>
+            </div>
+          </div>
 
-          <Input
-              id="lastName"
-              name="lastName"
-              aria-label="Inserisci cognome"
-              placeholder="Inserisici cognome"
-              v-model="inputField.lastName.text"
-              forLabel="lastName"
-              label="Cognome *"
-              outputError="Il campo dev’essere compilato"
-          />
+          <div pln-component="input-text" pln-version="1.0" pln-template="" class="form-field-container">
+            <div class="form-field">
+              <label for="cognome">Cognome*</label>
+              <input type="text" value="" id="cognome" name="cognome" aria-label="Cognome" required="">
+              <output role="alert" class="blank">Questo campo è obbligatorio.</output>
+            </div>
+          </div>
 
         </div>
 
-        <Input
-            id="password"
-            name="password"
-            aria-label="Inserisci password"
-            placeholder="Inserisici password"
-            v-model="inputField.password.text"
-            type="password"
-            forLabel="password"
-            label="Password *"
-            outputError="Il campo dev’essere compilato"
-        />
+        <div pln-component="input-text" pln-version="1.0" pln-template="" class="form-field-container">
+          <div class="form-field">
+            <label for="password">Password*</label>
+            <input type="password" value="" id="password" name="password" aria-label="Password" required="">
+            <output role="alert" class="blank">Questo campo è obbligatorio.</output>
+          </div>
+        </div>
         <p>La password deve contenere un minimo di 8 caratteri, di cui uno maiuscolo (A-Z), un numero (0-9) ed un
           carattere speciale</p>
 
-        <Input
-            id="repeatPassword"
-            name="repeatPassword"
-            aria-label="Ripeti password"
-            placeholder="Ripeti password"
-            v-model="inputField.repeatPassword.text"
-            type="password"
-            forLabel="repeatPassword"
-            label="Ripeti password *"
-            outputError="Il campo dev’essere compilato"
-        />
+        <div pln-component="input-text" pln-version="1.0" pln-template="" class="form-field-container">
+          <div class="form-field">
+            <label for="ripetiPassword">Password*</label>
+            <input type="password" value="" id="ripetiPassword" name="ripetiPassword" aria-label="Ripeti password"
+                   required="">
+            <output role="alert" class="blank">Questo campo è obbligatorio.</output>
+          </div>
+        </div>
+
 
         <div>
           <p>* Campi obbligatori</p>
@@ -84,19 +72,20 @@
         </div>
 
         <div class="registration__buttons">
-          <Button
-              color="button-white"
+          <button
+              class="pln-btn-secondary btn-outline"
               aria-label="Torna indietro"
+              type="submit"
           >
-            INDIETRO
-          </Button>
-          <Button
-              variant="button-contained"
-              color="button-yellow"
+            TORNA INDIETRO
+          </button>
+
+          <button
+              class="pln-btn-primary"
               aria-label="Continua"
           >
             CONTINUA
-          </Button>
+          </button>
 
 
         </div>
@@ -111,12 +100,9 @@
 
 <script>
 
-import Button from "@/components/Leopard/components/common/Button.vue";
-import Input from "@/components/Leopard/components/common/Input.vue";
-
 export default {
   name: "Registration",
-  components: {Button, Input},
+  components: {},
 
   data: function () {
     return {
@@ -186,25 +172,11 @@ export default {
   flex-basis: 100%;
 }
 
-.registration__content {
-  width: 30vw;
-}
-
-.registration__title {
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-.registration__sub-title {
-  font-size: 1.5rem;
+.text-your-mail {
   font-weight: 600;
 }
 
-.registration__your-mail {
-  font-weight: 600;
-}
-
-.registration__form {
+.registration-form {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
@@ -274,7 +246,7 @@ export default {
   border: unset;
 }
 
-.registration__form-field-content {
+.form-field-content {
   display: flex;
   flex-basis: 100%;
   gap: 15px;
@@ -291,6 +263,10 @@ export default {
   &::placeholder {
     color: $red-ruby;
   }
+}
+
+.form-field-container {
+  width: 100%;
 }
 
 

@@ -85,5 +85,38 @@ export default {
   }
 }
 
+.component-content {
+  margin: 75px auto auto;
+  width: 30vw;
+}
+
+.title {
+  margin-bottom: 10px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.text {
+  font-size: 16px;
+}
+
+.link-bottom-input {
+  margin-top: 5px;
+}
+
+.link {
+  color: rgb(9, 88, 165);
+  font-weight: 600;
+}
+
+.sub-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.btn-outline {
+  border: 1px solid;
+}
+
 
 </style>

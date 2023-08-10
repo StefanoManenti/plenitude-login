@@ -79,8 +79,6 @@ export default {
   border: solid 1px;
 }
 
-
-
 .button-contained {
   border: unset;
 }
