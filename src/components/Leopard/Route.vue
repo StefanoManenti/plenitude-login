@@ -87,7 +87,7 @@ export default {
 
 .component-content {
   margin: 75px auto auto;
-  width: 30vw;
+  width: 500px;
 }
 
 .title {
@@ -107,6 +107,7 @@ export default {
 .link {
   color: rgb(9, 88, 165);
   font-weight: 600;
+  text-decoration: underline;
 }
 
 .sub-title {
@@ -128,6 +129,13 @@ export default {
 
 .padding-30 {
   padding: 30px;
+}
+
+.container-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
 }
 
 

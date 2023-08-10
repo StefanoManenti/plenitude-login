@@ -1,44 +1,50 @@
 <template>
+  <form class="component-content">
 
-  <div class="mail-verification">
+    <h3 class="title">
+      Verifica mail
+    </h3>
 
-    <div class="mail-verification__content">
+    <h4 class="sub-title">
+      Inserisci codice di sicurezza
+    </h4>
 
-      <h3 class="">
-        Verifica mail
-      </h3>
+    <p class="text">
+      Abbiamo inviato un codice di sicurezza alla tua e-mail. Inseriscilo qui per continuare la registrazione.
+    </p>
 
-      <h4 class="">
-        Inserisci codice di sicurezza
-      </h4>
-
-      <p class="">
-        Abbiamo inviato un codice di sicurezza alla tua e-mail. Inseriscilo qui per continuare la registrazione.
-      </p>
-
-      <div class=" ">
-        <label  for="security-code">Codice di sicurezza</label>
-        <input
-               class="registration__input"
-               type="text"
-               placeholder="Inserisci OTP"
-               id="security-code"
-               name="security-code"
-               aria-label="Inserisci OTP"
-               required="">
-        <output
-            role="alert"
-            class="registration__output-error">
-          Codice errato
-        </output>
+    <div pln-component="input-text" pln-version="1.0" pln-template="" class="input-text-small">
+      <div class="form-field">
+        <label for="otp">Codice di sicurezza</label>
+        <input type="number" id="otp" name="otp" placeholder="Inserisci OTP" aria-label="Inserisci otp" >
+        <output role="alert" class="blank">Questo campo è obbligatorio.</output>
       </div>
+    </div>
+
+    <div class="link-bottom-input">
+      <a class="link" href="">Invia di nuovo</a>
+    </div>
+
+    <div class="container-buttons container-buttons-margin">
+      <button
+          class="pln-btn-secondary btn-outline"
+          aria-label="Torna indietro"
+      >
+        TORNA INDIETRO
+      </button>
+
+      <button
+          class="pln-btn-primary"
+          aria-label="Continua"
+          type="submit"
+      >
+        CONTINUA
+      </button>
+
 
     </div>
 
-
-  </div>
-
-
+  </form>
 
 
 </template>
@@ -50,10 +56,22 @@ export default {
   name: "MailVerification",
 
   data: function () {
-    return {
-
-    }
+    return {}
   }
 }
 
 </script>
+
+
+<style lang="scss" scoped>
+
+.input-text-small {
+  width: 50%;
+}
+
+.container-buttons-margin {
+  margin-top: 40px;
+}
+
+
+</style>

@@ -71,11 +71,10 @@
           </p>
         </div>
 
-        <div class="registration__buttons">
+        <div class="container-buttons">
           <button
               class="pln-btn-secondary btn-outline"
               aria-label="Torna indietro"
-              type="submit"
           >
             TORNA INDIETRO
           </button>
@@ -83,6 +82,7 @@
           <button
               class="pln-btn-primary"
               aria-label="Continua"
+              type="submit"
           >
             CONTINUA
           </button>
