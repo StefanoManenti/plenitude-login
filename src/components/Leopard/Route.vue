@@ -118,5 +118,17 @@ export default {
   border: 1px solid;
 }
 
+.btn-small {
+  width: 210px;
+}
+
+.gap-25 {
+  gap: 25px;
+}
+
+.padding-30 {
+  padding: 30px;
+}
+
 
 </style>

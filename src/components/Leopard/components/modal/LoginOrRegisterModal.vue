@@ -1,64 +1,79 @@
 <template id="LoginOrRegisterModal">
-  <transition name="login-or-register-modal">
-    <div class="login-or-register-modal__mask">
-      <div class="login-or-register-modal__wrapper">
 
-        <div class="login-or-register-modal__container">
+  <div pln-component="callmeback-modale" pln-version="2.0" pln-template="" id="modaleCaldaia-component"
+       data-pln-active="true">
+    <div pln-component="modale" pln-version="1.0" pln-template="" class="" data-pln-active="true">
+      <div class="modal show modal-mask" tabindex="-1"
+           aria-modal="true" role="dialog">
+        <div class="modal-dialog ">
+          <div class="modal-content" style="padding: unset; max-width: 600pt">
+            <div class="modal-header">
 
-          <div class="login-or-register-modal__header">
-            <slot name="header">
-              <img class="login-or-register-modal__close-image" src="../../../../assets/iconsClose.svg">
-              <img class="login-or-register-modal__image-header" v-bind:src="image">
-            </slot>
-          </div>
+              <img class="modal-image-header" v-bind:src="image">
 
-          <div class="login-or-register-modal__body">
-            <slot name="body">
-              <h4>{{ body.textTitle }}</h4>
-              <p>{{ body.textContent }}</p>
-            </slot>
-          </div>
+              <button
+                  type="button"
+                  data-bs-dismiss="modal"
+                  class="close"
+                  aria-label="Chiudi">
+                <img
+                    loading="lazy"
+                    src="../../../../assets/iconsClose.svg"
+                    alt="chiudi modale"
+                    aria-hidden="true">
+              </button>
+            </div>
 
-          <div class="login-or-register-modal__footer">
-            <slot name="footer">
-              <Button v-if="buttons.buttonBack"
-                      size="button-small"
-                      color="button-white"
-                      aria-label="indietro"
-                      @click="buttonBack"
-              >
-                INDIETRO
-              </Button>
-              <Button
-                  v-if="buttons.buttonContinue"
-                  variant="button-contained"
-                  color="button-yellow"
-                  size="button-small"
-                  aria-label="avanti"
-                  @click="buttonContinue"
-              >
-                AVANTI
-              </Button>
-              <Button
-                  v-if="buttons.buttonStart"
-                  variant="button-contained"
-                  color="button-yellow"
-                  size="button-small"
-                  aria-label="inizia"
-                  @click="buttonStart"
-              >
-                INIZIA
-              </Button>
+            <!--Body modale-->
+            <div class="modal-body padding-30">
+              <div class="row-big-element title-header ">
+                <h3>{{ body.textTitle }}</h3>
+              </div>
 
-            </slot>
-          </div>
+              <div class="row-big-element subtitle-header ">
+                <p>{{ body.textContent }}</p>
+              </div>
 
-          <div class="login-or-register-modal__indicator">
-            <ul>
-              <input type="radio" v-bind:class="indicatorFirst" disabled>
-              <input type="radio" v-bind:class="indicatorSecond" disabled>
-              <input type="radio" v-bind:class="indicatorThird" disabled>
-            </ul>
+              <div class="row-element d-flex justify-content-center gap-25">
+                <button
+                    v-if="buttons.buttonBack"
+                    class="pln-btn-secondary btn-outline btn-small"
+                    aria-label="Indietro"
+                    @click="buttonBack"
+                >
+                  INDIETRO
+                </button>
+
+                <button
+                    v-if="buttons.buttonContinue"
+                    class="pln-btn-primary btn-small"
+                    aria-label="Avanti"
+                    @click="buttonContinue"
+                >
+                  AVANTI
+                </button>
+
+                <button
+                    v-if="buttons.buttonStart"
+                    class="pln-btn-primary btn-small"
+                    aria-label="Inzia"
+                    @click="buttonStart"
+                >
+                  INIZIA
+                </button>
+                <!--                    <button class="pln-btn-primary row-element" type="submit">Ti chiamiamo noi</button>-->
+              </div>
+
+              <div class="modal-indicator">
+                <ul>
+                  <input type="radio" v-bind:class="indicatorFirst" disabled>
+                  <input type="radio" v-bind:class="indicatorSecond" disabled>
+                  <input type="radio" v-bind:class="indicatorThird" disabled>
+                </ul>
+              </div>
+
+            </div>
+
           </div>
 
         </div>
@@ -66,15 +81,12 @@
       </div>
 
     </div>
-  </transition>
-
+  </div>
 
 </template>
 
 
 <script>
-
-import Button from "@/components/Leopard/components/common/Button.vue";
 
 const MODAL_FLOW = {
   header: {
@@ -154,7 +166,7 @@ const MODAL_STEPS = {
 
 export default {
   name: "LoginOrRegisterModal",
-  components: {Button},
+  components: {},
 
   data: function () {
     return {
@@ -221,15 +233,15 @@ export default {
 
   computed: {
     indicatorFirst: function () {
-      return this.indicators.showIndicatorFirst ? 'login-or-register-modal__indicator--checked' : null
+      return this.indicators.showIndicatorFirst ? 'modal-indicator-checked' : null
     },
 
     indicatorSecond: function () {
-      return this.indicators.showIndicatorSecond ? 'login-or-register-modal__indicator--checked' : null
+      return this.indicators.showIndicatorSecond ? 'modal-indicator-checked' : null
     },
 
     indicatorThird: function () {
-      return this.indicators.showIndicatorThird ? 'login-or-register-modal__indicator--checked' : null
+      return this.indicators.showIndicatorThird ? 'modal-indicator-checked' : null
 
     }
   }
@@ -243,62 +255,13 @@ export default {
 
 @import "src/components/Leopard/styles/variables";
 
-.login-or-register-modal__mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
-}
-
-.login-or-register-modal__wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.login-or-register-modal__container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  width: 42em;
-  height: 39em;
-  margin: 0px auto;
-  background-color: $white;
-  border-radius: 0.5em;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.login-or-register-modal__footer {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-grow: 1;
-  padding-top: .8em;
-  padding-bottom: 1.8em;
-}
-
-.login-or-register-modal__body {
-  padding-left: 3em;;
-}
-
-.login-or-register-modal__header {
-  flex-grow: 10;
-  position: relative;
-}
-
-.login-or-register-modal__indicator {
+.modal-indicator {
   position: absolute;
   bottom: -3em;
   left: 50%;
 }
 
-.login-or-register-modal__indicator input[type="radio"] {
+.modal-indicator input[type="radio"] {
   appearance: none;
   border: 1px solid $white;
   height: 9px;
@@ -308,18 +271,18 @@ export default {
   cursor: unset;
 }
 
-.login-or-register-modal__close-image {
-  position: absolute;
-  right: 20px;
-  top: 30px;
-}
-
-.login-or-register-modal__image-header {
+.modal-image-header {
   width: 100%;
 }
 
-.login-or-register-modal__indicator--checked {
+.modal-indicator-checked {
   background-color: $white;
+}
+
+.modal-mask {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: block;
+  padding-right: 6px
 }
 
 
