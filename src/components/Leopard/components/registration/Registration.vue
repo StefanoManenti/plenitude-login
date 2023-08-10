@@ -58,7 +58,7 @@
             label="Password *"
             outputError="Il campo dev’essere compilato"
         />
-        <p>La password deve contenere un minimo di 8 caratteri, di cui uno maiuscolo (A-Z), un numero (0-9) ed un
+        <p class="registration__text-password">La password deve contenere un minimo di 8 caratteri, di cui uno maiuscolo (A-Z), un numero (0-9) ed un
           carattere speciale</p>
 
         <Input
@@ -291,6 +291,10 @@ export default {
   &::placeholder {
     color: $red-ruby;
   }
+}
+
+.registration__text-password {
+  margin-top: -1em;
 }
 
 

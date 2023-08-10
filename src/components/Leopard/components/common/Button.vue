@@ -77,9 +77,8 @@ export default {
   width: 100%;
   height: 3em;
   border: solid 1px;
+  font-weight: 600;
 }
-
-
 
 .button-contained {
   border: unset;

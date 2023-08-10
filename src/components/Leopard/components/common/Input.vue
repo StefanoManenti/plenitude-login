@@ -9,7 +9,7 @@
     <input
         v-on:blur="handleOutsideClickError($event)"
         class="input"
-        :class="[customClassInput, inputClassError]"
+        :class="[customClassInput, inputClassError, size]"
         :type="type"
         :value="value"
         @input="onInput"
@@ -17,6 +17,7 @@
         :id="id"
         :name="name"
         :aria-label="ariaLabel"
+
     />
     <p
         v-show="showOutputError"
@@ -83,6 +84,10 @@ export default {
     value: {
       type: String,
       required: true,
+    },
+    size: {
+      type: String,
+      default: null
     }
 
   },
@@ -168,6 +173,10 @@ export default {
   &::placeholder {
     color: $red-ruby;
   }
+}
+
+.input-small {
+  width: 13em;
 }
 
 </style>
