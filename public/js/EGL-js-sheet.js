@@ -14759,7 +14759,8 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             $('[needs-validation="true"]').find('.email, [type=email]').on('blur', function () {
-                emailCheck($(this));
+                sfEmailCheck($(this));
+                console.log("TEST EMAIL BLUR CHECK")
             });
 
             //- Graphic effects ---

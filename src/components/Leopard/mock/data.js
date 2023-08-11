@@ -1,6 +1,6 @@
 export const verificaEsistenzaMail =
     {
-        "codEvt": "010",
+        "codEvt": "007",
         "errMsgEvt": "",
         "userDataList": [
             {
@@ -15,3 +15,5 @@ export const verificaEsistenzaMail =
             }
         ]
     }
+
+export const d = {}

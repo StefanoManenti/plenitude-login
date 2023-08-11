@@ -15,7 +15,8 @@
     <div pln-component="input-text" pln-version="1.0" pln-template="">
       <div class="form-field">
         <label for="email">Email*</label>
-        <input type="email" id="email" name="email" aria-label="Email" placeholder="nome.cognome@mail.com"
+        <input type="email" id="email" name="email" v-model="email" aria-label="Email"
+               placeholder="nome.cognome@mail.com"
                required="">
         <output role="alert" class="blank">Inserisci un indirizzo email valido.</output>
       </div>
@@ -29,19 +30,16 @@
         class="pln-btn-primary btn-margin "
         aria-label="Prosegui"
         type="submit"
-        @click="emailExistenceCheck"
     >
       PROSEGUI
     </button>
 
-    <LoginOrRegisterModal v-if="displayModal"></LoginOrRegisterModal>
 
     <p class="splitter">OPPURE</p>
 
     <button
         class="pln-btn-secondary btn-outline "
         aria-label="Prosegui tramite social"
-        @click="emailExistenceCheck"
     >
       PROSEGUI TRAMITE SOCIAL
     </button>
@@ -52,39 +50,53 @@
 
 <script>
 
-import LoginOrRegisterModal from "@/components/Leopard/components/modal/LoginOrRegisterModal.vue";
-import {emailExistenceCheck} from "../../services/apiService"
+// import {emailExistenceCheck} from "../../api/apiService"
+import {verificaEsistenzaMail} from "@/components/Leopard/mock/data";
+
+const COD_EVT = {
+  EXCEPTION: "000",
+  FREE_MAIL: "007",
+}
 
 export default {
   name: "LoginOrRegister",
 
-  components: {
-    LoginOrRegisterModal
-  },
-
   data: function () {
     return {
       email: null,
-      displayModal: false
+      displayModal: false,
     };
   },
 
-  methods: {
-    checkForm: function (e) {
-      this.displayComponentModal()
 
+  methods: {
+    checkForm: async function (e) {
       e.preventDefault();
 
+      //const response = await emailExistenceCheck(this.email, {"isPivaFE": false});
+      const response = verificaEsistenzaMail
+      console.log(response)
+
+      if (response) {
+        const {codEvt, errMsgEvt} = response;
+        this.selectPageComponent(codEvt, errMsgEvt);
+
+        console.log("email", this.email);
+        this.$emit("user-email", this.email)
+      }
     },
 
-    displayComponentModal() {
-      this.displayModal = true;
+    selectPageComponent(codEvt, errMsgEvt) {
+      switch (codEvt) {
+        case COD_EVT.EXCEPTION:
+          console.log("Error", errMsgEvt); // view error with ...?
+          break;
+        case COD_EVT.FREE_MAIL:
+          this.$emit('update-component', 'registration');
+          break;
+      }
     },
 
-    emailExistenceCheck: async function () {
-      const response = await emailExistenceCheck(this.email);
-      console.log(response);
-    }
   },
 
 }

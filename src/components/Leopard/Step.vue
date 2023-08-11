@@ -1,8 +1,8 @@
 <template id="step">
   <div class="step bounceIn">
     <div class="container container-height">
-      <login-or-register v-if="stepCurrent === 'login-or-register'"></login-or-register>
-      <registration v-if="stepCurrent === 'registration'"></registration>
+      <login-or-register @update-component="onUpdateComponent" @user-email="userEmail" v-if="stepCurrent === 'login-or-register'"></login-or-register>
+      <registration :email="email" v-if="stepCurrent === 'registration'"></registration>
       <mail-verification v-if="stepCurrent === 'mail-verification'"></mail-verification>
       <mail-verification-success v-if="stepCurrent === 'mail-verification-success'"></mail-verification-success>
     </div>
@@ -34,6 +34,7 @@ export default {
   data: function () {
     return {
       stepCurrent: "login-or-register",
+      email: ""
     };
   },
 
@@ -50,6 +51,10 @@ export default {
     onUpdateComponent: function (cmp) {
       console.log('onUpdateComponent', cmp);
       this.stepCurrent = cmp;
+    },
+
+    userEmail: function(email) {
+      this.email = email;
     }
 
     /*
