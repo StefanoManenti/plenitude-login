@@ -1,21 +1,15 @@
 <template id="LoginOrRegisterModal">
 
-  <div pln-component="callmeback-modale" pln-version="2.0" pln-template="" id="modaleCaldaia-component"
-       data-pln-active="true">
+  <div pln-component="callmeback-modale" pln-version="2.0" pln-template="" id="modaleCaldaia-component" data-pln-active="true">
     <div pln-component="modale" pln-version="1.0" pln-template="" class="" data-pln-active="true">
-      <div class="modal show modal-mask" tabindex="-1"
-           aria-modal="true" role="dialog">
+      <div class="modal show modal-mask" tabindex="-1" aria-modal="true" role="dialog">
         <div class="modal-dialog ">
           <div class="modal-content" style="padding: unset; max-width: 600pt">
             <div class="modal-header">
 
               <img class="modal-image-header" v-bind:src="image">
 
-              <button
-                  type="button"
-                  data-bs-dismiss="modal"
-                  class="close"
-                  aria-label="Chiudi">
+              <button type="button" data-bs-dismiss="modal" class="close" aria-label="Chiudi">
                 <img
                     loading="lazy"
                     src="../../../../assets/iconsClose.svg"
@@ -35,30 +29,15 @@
               </div>
 
               <div class="row-element d-flex justify-content-center gap-25">
-                <button
-                    v-if="buttons.buttonBack"
-                    class="pln-btn-secondary btn-outline btn-small"
-                    aria-label="Indietro"
-                    @click="buttonBack"
-                >
+                <button v-if="buttons.buttonBack" class="pln-btn-secondary btn-outline btn-small" aria-label="Indietro" @click="buttonBack">
                   INDIETRO
                 </button>
 
-                <button
-                    v-if="buttons.buttonContinue"
-                    class="pln-btn-primary btn-small"
-                    aria-label="Avanti"
-                    @click="buttonContinue"
-                >
+                <button v-if="buttons.buttonContinue" class="pln-btn-primary btn-small" aria-label="Avanti" @click="buttonContinue">
                   AVANTI
                 </button>
 
-                <button
-                    v-if="buttons.buttonStart"
-                    class="pln-btn-primary btn-small"
-                    aria-label="Inzia"
-                    @click="buttonStart"
-                >
+                <button v-if="buttons.buttonStart" class="pln-btn-primary btn-small" aria-label="Inzia" @click="buttonStart">
                   INIZIA
                 </button>
               </div>
