@@ -6,6 +6,7 @@
       <option value="login-or-register">Login or Register</option>
       <option value="registration">Registration</option>
       <option value="mail-verification">Mail verification</option>
+      <option value="mail-verification-success">Mail verification success</option>
     </select>
   </div>
 </template>

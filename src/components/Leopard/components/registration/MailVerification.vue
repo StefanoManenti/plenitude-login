@@ -1,28 +1,30 @@
 <template>
   <form class="component-content">
 
-    <h3 class="title">
-      Verifica mail
-    </h3>
+    <div class="section-container">
+      <h3 class="section-title">
+        Verifica mail
+      </h3>
 
-    <h4 class="sub-title">
-      Inserisci codice di sicurezza
-    </h4>
+      <h4 class="section-sub-title">
+        Inserisci codice di sicurezza
+      </h4>
 
-    <p class="text">
-      Abbiamo inviato un codice di sicurezza alla tua e-mail. Inseriscilo qui per continuare la registrazione.
-    </p>
+      <p class="section-text">
+        Abbiamo inviato un codice di sicurezza alla tua e-mail. Inseriscilo qui per continuare la registrazione.
+      </p>
+    </div>
 
     <div pln-component="input-text" pln-version="1.0" pln-template="" class="input-text-small">
       <div class="form-field">
         <label for="otp">Codice di sicurezza</label>
-        <input type="number" id="otp" name="otp" placeholder="Inserisci OTP" aria-label="Inserisci otp" >
+        <input type="number" id="otp" name="otp" placeholder="Inserisci OTP" aria-label="Inserisci otp">
         <output role="alert" class="blank">Questo campo è obbligatorio.</output>
       </div>
     </div>
 
-    <div class="link-bottom-input">
-      <a class="link" href="">Invia di nuovo</a>
+    <div class="link-container">
+      <a class="link-text" href="">Invia di nuovo</a>
     </div>
 
     <div class="container-buttons container-buttons-margin">
@@ -40,7 +42,6 @@
       >
         CONTINUA
       </button>
-
 
     </div>
 

@@ -2,22 +2,25 @@
   <form needs-validation="true" class="registration" @submit="checkFormRegistration">
     <div class="component-content">
 
-      <h3 class="title">
-        Registrazione
-      </h3>
+      <div class="section-container">
+        <h3 class="section-title">
+          Registrazione
+        </h3>
 
-      <h4 class="sub-title">
-        Inserisci dati
-      </h4>
+        <h4 class="section-sub-title">
+          Inserisci dati
+        </h4>
 
-      <p class="text">
-        Crea un account unico per accedere a tutte le app Eni.
-      </p>
+        <p class="section-text">
+          Crea un account unico per accedere a tutte le app Eni.
+        </p>
 
-      <div class="text-your-mail">
-        La tua mail:
+        <div class="text-with-label-container">
+          <span class="text-with-label">La tua mail:</span>
+          <p>{{ this.mail }}</p>
+        </div>
+
       </div>
-      <p>{{ this.mail }}</p>
 
       <div class="registration-form">
 
@@ -53,7 +56,7 @@
 
         <div pln-component="input-text" pln-version="1.0" pln-template="" class="form-field-container">
           <div class="form-field">
-            <label for="ripetiPassword">Password*</label>
+            <label for="ripetiPassword">Ripeti password*</label>
             <input type="password" value="" id="ripetiPassword" name="ripetiPassword" aria-label="Ripeti password"
                    required="">
             <output role="alert" class="blank">Questo campo è obbligatorio.</output>
@@ -65,35 +68,26 @@
           <p>* Campi obbligatori</p>
           <p>
             Continuando accetti i
-            <a href="#" class="registration__anchor">termini e condizioni</a> e la <a href="#"
-                                                                                      class="registration__anchor">privacy
-            policy</a> del servizio.
+            <a href="#" class="link-text">termini e condizioni</a>
+            e la
+            <a href="#" class="link-text">privacy policy</a>
+            del servizio.
           </p>
         </div>
 
         <div class="container-buttons">
-          <button
-              class="pln-btn-secondary btn-outline"
-              aria-label="Torna indietro"
-          >
-            TORNA INDIETRO
+          <button class="pln-btn-secondary btn-outline" aria-label="Torna indietro">
+            Torna indietro
           </button>
 
-          <button
-              class="pln-btn-primary"
-              aria-label="Continua"
-              type="submit"
-          >
-            CONTINUA
+          <button class="pln-btn-primary" aria-label="Continua" type="submit">
+            Continua
           </button>
-
-
         </div>
 
       </div>
 
     </div>
-
 
   </form>
 </template>
@@ -172,7 +166,7 @@ export default {
   flex-basis: 100%;
 }
 
-.text-your-mail {
+.text-with-label {
   font-weight: 600;
 }
 
@@ -180,70 +174,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-}
-
-.registration__input {
-  height: 45px;
-  width: 100%;
-  border: 1px solid #333;
-  border-radius: 5px;
-  display: flex;
-  padding-left: 1rem;
-}
-
-.registration__form-field {
-  width: 100%;
-}
-
-.registration__form-field--small {
-  width: 48%;
-}
-
-.registration__output-error {
-  color: $red-ruby;
-  font-size: 14px;
-}
-
-.registration__output-error:before {
-  content: "!";
-  border: 1px solid $red-ruby;
-  color: $red-ruby;
-  border-radius: 50%;
-  margin-right: 5px;
-  font-weight: 900;
-  font-size: 14px;
-  line-height: 15px;
-  width: 17px;
-  display: inline-block;
-  text-align: center;
-}
-
-.registration__anchor {
-  text-decoration: underline;
-  color: rgb(9, 88, 165);
-  font-weight: 600;
-}
-
-.registration__buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-basis: 100%;
-}
-
-.registration__button {
-  border-radius: .3em;
-  width: 100%;
-  height: 3em;
-}
-
-.registration__button-back {
-  background-color: $white;
-}
-
-.registration__button-continue {
-  background-color: $primary;
-  border: unset;
 }
 
 .form-field-content {

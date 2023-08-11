@@ -61,7 +61,6 @@
                 >
                   INIZIA
                 </button>
-                <!--                    <button class="pln-btn-primary row-element" type="submit">Ti chiamiamo noi</button>-->
               </div>
 
               <div class="modal-indicator">

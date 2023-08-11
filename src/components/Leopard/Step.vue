@@ -1,9 +1,10 @@
 <template id="step">
   <div class="step bounceIn">
-    <div class="container">
+    <div class="container container-height">
       <login-or-register v-if="stepCurrent === 'login-or-register'"></login-or-register>
       <registration v-if="stepCurrent === 'registration'"></registration>
       <mail-verification v-if="stepCurrent === 'mail-verification'"></mail-verification>
+      <mail-verification-success v-if="stepCurrent === 'mail-verification-success'"></mail-verification-success>
     </div>
 
     <switcher @update-component="onUpdateComponent"></switcher>
@@ -16,11 +17,13 @@ import Switcher from './components/switcher/Switcher.vue';
 import LoginOrRegister from './components/login-or-register/LoginOrRegister.vue';
 import Registration from './components/registration/Registration.vue';
 import MailVerification from "@/components/Leopard/components/registration/MailVerification.vue";
+import MailVerificationSuccess from "@/components/Leopard/components/registration/MailVerificationSuccess.vue";
 
 export default {
   name: "Step",
 
   components: {
+    MailVerificationSuccess,
     MailVerification,
     Switcher,
     LoginOrRegister,
@@ -60,6 +63,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.container-height {
+  height: 75vh;
+}
 
 
 </style>

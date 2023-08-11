@@ -90,29 +90,34 @@ export default {
   width: 500px;
 }
 
-.title {
+.section-title {
   margin-bottom: 10px;
   font-size: 32px;
   font-weight: 600;
 }
 
-.text {
+.section-text {
   font-size: 16px;
 }
 
-.link-bottom-input {
+.section-sub-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.link-container {
   margin-top: 5px;
 }
 
-.link {
+.link-text,
+.link-text:hover {
   color: rgb(9, 88, 165);
   font-weight: 600;
   text-decoration: underline;
 }
 
-.sub-title {
-  font-size: 24px;
-  font-weight: 600;
+.link-text:hover {
+  font-weight: 700;
 }
 
 .btn-outline {
@@ -121,6 +126,10 @@ export default {
 
 .btn-small {
   width: 210px;
+}
+
+.btn-medium {
+  width: 350px;
 }
 
 .gap-25 {
